@@ -19,6 +19,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         data.images.forEach(element => {
           db.run(insert, [0, element.url])
         })
+        console.log('Database fully seeded')
       }
     });  
   }
