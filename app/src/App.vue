@@ -4,7 +4,12 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/ranking">Ranking</router-link>
     </div>
-    <router-view/>
+    <transition
+        name="fade"
+        mode="out-in"
+      >
+        <router-view class="container"/>
+      </transition>
   </div>
 </template>
 
@@ -14,7 +19,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background-color: #2c3e50;
+  color: white;
+  width: 100%;
+  min-height: 100vh;
 }
 
 #nav {
@@ -23,7 +31,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
 
 #nav a.router-link-exact-active {
