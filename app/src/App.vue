@@ -16,6 +16,17 @@
   </div>
 </template>
 
+<script>
+import { getCats } from '@/services/api';
+
+export default {
+  async mounted() {
+    const cats = await getCats()
+    this.$store.dispatch('setValue', { cats });
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

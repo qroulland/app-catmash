@@ -6,27 +6,22 @@
 </template>
 
 <script>
-import { getCats } from '@/services/api';
 import Podium from '@/components/Podium';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Ranking',
   components: {
     'v-podium': Podium,
   },
-  data () {
-    return {
-      cats: [],
-    }
-  },
   computed: {
+    ...mapGetters({
+      cats: 'getCats',
+    }),
     catsSortedByVote() {
-      const array = this.cats
-      return array.sort((a,b) => (a.vote > b.vote) ? 1 : ((b.vote > a.vote) ? -1 : 0));
+      const catsArray = this.cats;
+      return catsArray.sort((a,b) => (a.vote > b.vote) ? 1 : ((b.vote > a.vote) ? -1 : 0));
     },
   },
-  async mounted() {
-    this.cats = await getCats();
-  }
 }
 </script>
