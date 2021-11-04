@@ -8,7 +8,10 @@
         name="fade"
         mode="out-in"
       >
-        <router-view class="container"/>
+        <router-view
+          :key="$route.path"
+          class="container"
+        />
       </transition>
   </div>
 </template>
@@ -36,5 +39,11 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
