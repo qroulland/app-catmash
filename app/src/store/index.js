@@ -17,7 +17,6 @@ export default new Vuex.Store({
     },
     VOTE(state, id) {
       const index = state.cats.indexOf(state.cats.find((cat) => cat.id === id));
-      console.log(index);
       state.cats[index].vote++;
     }
   },
