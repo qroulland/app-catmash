@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    v-if="ready"
+  >
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/ranking">Ranking</router-link>
@@ -20,9 +23,20 @@
 import { getCats } from '@/services/api';
 
 export default {
-  async mounted() {
-    const cats = await getCats()
-    this.$store.dispatch('setValue', { cats });
+  data() {
+    return {
+      ready: false,
+    };
+  },
+  methods: {
+    async findCats() {
+      const cats = await getCats();
+      await this.$store.dispatch('setValue', { cats });
+      this.ready = true;
+    }
+  },
+  created() {
+    this.findCats();
   }
 }
 </script>
