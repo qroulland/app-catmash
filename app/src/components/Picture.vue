@@ -5,6 +5,7 @@
     :alt="`Photo N°${id}`"
     width="250"
     height="250"
+    @click="emit('vote')"
   >
 </template>
 
@@ -20,6 +21,11 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  methods: {
+    emit(event) {
+      this.$emit(event)
+    }
   }
 }
 </script>
@@ -31,6 +37,9 @@ export default {
 }
 .glow {
   animation: glow 1.5s infinite alternate;
+}
+.glow:hover {
+  background-color: rgba(0,0,0,.5);
 }
 @keyframes glow {
   from {

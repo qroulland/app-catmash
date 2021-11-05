@@ -15,10 +15,18 @@ export default new Vuex.Store({
       const [key] = Object.keys(object);
       state[key] = object[key];
     },
+    VOTE(state, id) {
+      const index = state.cats.indexOf(state.cats.find((cat) => cat.id === id));
+      console.log(index);
+      state.cats[index].vote++;
+    }
   },
   actions: {
     setValue({ commit }, object) {
       commit('SET_VALUE', object);
     },
+    vote({ commit }, id) {
+      commit('VOTE', id);
+    }
   },
 })

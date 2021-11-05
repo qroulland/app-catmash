@@ -10,6 +10,7 @@
           :url="randomCats[0].url"
           :id="randomCats[0].id"
           class="glow"
+          @vote="vote(randomCats[0].id)"
         />
       </div>
       <div class="rightSide w-50">
@@ -18,6 +19,7 @@
           :url="randomCats[1].url"
           :id="randomCats[1].id"
           class="glow"
+          @vote="vote(randomCats[1].id)"
         />
       </div>
     </div>
@@ -64,6 +66,10 @@ export default {
       }
 
       this.randomCats.push(catOne, catTwo);
+    },
+    vote(id) {
+      this.$store.dispatch('vote', id);
+      this.getTwoRandomCat();
     }
   },
   mounted() {

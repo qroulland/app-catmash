@@ -1,7 +1,7 @@
 <template>
   <div class="ranking">
     <h2>Leaderboard</h2>
-    <v-podium :cats="catsSortedByVote.slice(0, 3)" />
+    <v-podium :cats="sortByVote(cats).slice(0, 3)" />
   </div>
 </template>
 
@@ -18,9 +18,10 @@ export default {
     ...mapGetters({
       cats: 'getCats',
     }),
-    catsSortedByVote() {
-      const catsArray = this.cats;
-      return catsArray.sort((a,b) => (a.vote > b.vote) ? 1 : ((b.vote > a.vote) ? -1 : 0));
+  },
+  methods: {
+    sortByVote(cats) {
+      return cats.sort((a,b) => (a.vote < b.vote) ? 1 : ((b.vote < a.vote) ? -1 : 0));
     },
   },
 }
