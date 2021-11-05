@@ -26,13 +26,10 @@
           height="64px"
         >
       </div>
-      <img
-        class="rounded-circle icon"
-        :src="cat.url"
-        :alt="`Photo N°${cat.id}`"
-        width="250"
-        height="250"
-      >
+      <v-picture
+        :url="cat.url"
+        :id="cat.id"
+      />
       <div class="points">
         {{ cat.vote }}
       </div>
@@ -41,8 +38,13 @@
 </template>
 
 <script>
+import Picture from '@/components/Picture';
+
 export default ({
   name: 'Podium',
+  components: {
+    'v-picture': Picture,
+  },
   props: {
     cats: {
       type: Array,
@@ -62,10 +64,6 @@ export default ({
 </script>
 
 <style scoped>
-.icon {
-  border: 3px solid #42b983;
-  box-shadow: 0px 0px 30px 0px #42b983;
-}
 .position {
   font-size: 2rem;
   margin-bottom: 1rem;

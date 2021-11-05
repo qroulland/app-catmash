@@ -2,18 +2,23 @@
   <div
     id="app"
     v-if="ready"
+    class="min-vh-100 p-5"
   >
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/ranking">Ranking</router-link>
-    </div>
+    <router-link
+      to="/"
+      class="h1 fw-bold text-white text-decoration-none"
+    >
+      <font-awesome-icon icon="paw" />
+      CATMASH
+      <font-awesome-icon icon="paw" />
+    </router-link>
     <transition
         name="fade"
         mode="out-in"
       >
         <router-view
           :key="$route.path"
-          class="container"
+          class="mt-3"
         />
       </transition>
   </div>

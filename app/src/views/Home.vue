@@ -1,14 +1,47 @@
 <template>
   <div class="home">
-    {{ randomCats }}
+    <h2>
+      Choose the cutest cat!
+    </h2>
+    <div class="content">
+      <div class="leftSide w-50">
+        <v-picture
+          v-if="randomCats[0]"
+          :url="randomCats[0].url"
+          :id="randomCats[0].id"
+          class="glow"
+        />
+      </div>
+      <div class="rightSide w-50">
+        <v-picture
+          v-if="randomCats[1]"
+          :url="randomCats[1].url"
+          :id="randomCats[1].id"
+          class="glow"
+        />
+      </div>
+    </div>
+    <div class="footer pt-5">
+      <router-link
+        to="/ranking"
+        class="btn btn-lg btn-warning text-white"
+      >
+        Check the leaderboard
+        <font-awesome-icon icon="trophy" />
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import Picture from '@/components/Picture';
 
 export default {
   name: 'Home',
+  components: {
+    'v-picture': Picture,
+  },
   data() {
     return {
       randomCats: [],
@@ -38,3 +71,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home {
+  display: flex;
+  flex-flow: column;
+  height: 80vh;
+}
+.home h2 {
+  flex: 0 1 auto;
+}
+.home .content {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+.home .footer {
+  flex: 0 1 40px;
+}
+</style>

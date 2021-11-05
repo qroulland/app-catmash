@@ -1,6 +1,6 @@
 <template>
   <div class="ranking">
-    <h1>Leaderboard</h1>
+    <h2>Leaderboard</h2>
     <v-podium :cats="catsSortedByVote.slice(0, 3)" />
   </div>
 </template>
