@@ -31,7 +31,9 @@
         :id="cat.id"
       />
       <div class="points">
-        {{ cat.vote }}
+        <span class="fw-bold">
+          {{ cat.vote }}
+        </span>pt{{ cat.vote > 0 ? 's' : '' }}
       </div>
     </div>
   </div>
