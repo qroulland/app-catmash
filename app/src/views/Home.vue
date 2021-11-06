@@ -94,6 +94,7 @@ export default {
 }
 .leftSide,
 .rightSide {
+  transition: background-color 1s;
   display: flex;
   align-items: center;
   justify-content: center;
