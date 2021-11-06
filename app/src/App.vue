@@ -6,7 +6,8 @@
   >
     <router-link
       to="/"
-      class="h1 fw-bold text-white text-decoration-none"
+      class="h1 fw-bold text-white text-decoration-none position-relative"
+      style="z-index: 10"
     >
       <font-awesome-icon icon="paw" />
       CATMASH

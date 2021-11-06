@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h2>
-      Choose the cutest cat!
+      Who's the cutest cat ever ?
     </h2>
     <div class="content">
       <div class="leftSide w-50">
@@ -9,7 +9,7 @@
           v-if="randomCats[0]"
           :url="randomCats[0].url"
           :id="randomCats[0].id"
-          class="glow"
+          :canVote="true"
           @vote="vote(randomCats[0].id)"
         />
       </div>
@@ -18,12 +18,12 @@
           v-if="randomCats[1]"
           :url="randomCats[1].url"
           :id="randomCats[1].id"
-          class="glow"
+          :canVote="true"
           @vote="vote(randomCats[1].id)"
         />
       </div>
     </div>
-    <div class="footer pt-5">
+    <div class="fixed-bottom pb-5">
       <router-link
         to="/ranking"
         class="btn btn-lg btn-warning text-white"
@@ -79,20 +79,28 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  display: flex;
-  flex-flow: column;
-  height: 80vh;
-}
 .home h2 {
-  flex: 0 1 auto;
+  z-index: 1;
+  position: relative;
 }
-.home .content {
-  flex: 1 1 auto;
+.content {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.leftSide,
+.rightSide {
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 100%;
 }
-.home .footer {
-  flex: 0 1 40px;
+.leftSide:hover,
+.rightSide:hover {
+  background-color: rgba(0, 0, 0, .5);
 }
 </style>
