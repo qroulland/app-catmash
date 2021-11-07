@@ -12,13 +12,17 @@ var HTTP_PORT = process.env.PORT || 8000
 if(process.env.NODE_ENV === 'production') {
   // Static
   app.use(servestatic(path.join(path.resolve(), 'dist')));
-  // Cors
-  app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", 'https://damp-inlet-82314.herokuapp.com');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  })
 }
+
+app.use((req, res, next) => {
+  const allowedOrigins = ['http://localhost:8080', 'https://damp-inlet-82314.herokuapp.com'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 // Start server
 app.listen(HTTP_PORT, '0.0.0.0', () => {
