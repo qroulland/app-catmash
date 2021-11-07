@@ -8,22 +8,22 @@ var servestatic = require("serve-static");
 // Server port
 var HTTP_PORT = process.env.PORT || 8000
 
-// Enable static in production
-if(process.env.NODE_ENV === 'production'){
+// In production
+if(process.env.NODE_ENV === 'production') {
+  // Static
   app.use(servestatic(path.join(path.resolve(), 'dist')));
+  // Cors
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", 'https://damp-inlet-82314.herokuapp.com');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  })
 }
 
 // Start server
 app.listen(HTTP_PORT, '0.0.0.0', () => {
   console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
 });
-
-// // CORS
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// })
 
 // Get all cats
 app.get("/api/cats", (req, res, next) => {
