@@ -2,13 +2,16 @@
 var express = require("express")
 var app = express()
 var db = require("./database.js")
+var servestatic = require("serve-static");
 
 // Server port
 var HTTP_PORT = process.env.PORT || 8000
 
+// Enable static
+app.use(servestatic(path.join(path.resolve(), 'dist')));
+
 // Start server
 app.listen(HTTP_PORT, '0.0.0.0', () => {
-  console.log(process.env.PORT)
   console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
 });
 
@@ -18,11 +21,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 })
-
-// Root endpoint
-app.get("/", (req, res, next) => {
-    res.json({"message":"Ok"})
-});
 
 // Get all cats
 app.get("/api/cats", (req, res, next) => {
