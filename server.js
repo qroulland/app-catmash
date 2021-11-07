@@ -1,6 +1,7 @@
 // Create express app
 var express = require("express")
 var app = express()
+var path = require('path')
 var db = require("./database.js")
 var servestatic = require("serve-static");
 
