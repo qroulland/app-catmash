@@ -18,12 +18,12 @@ app.listen(HTTP_PORT, '0.0.0.0', () => {
   console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
 });
 
-// CORS
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
+// // CORS
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// })
 
 // Get all cats
 app.get("/api/cats", (req, res, next) => {
