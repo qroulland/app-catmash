@@ -8,8 +8,10 @@ var servestatic = require("serve-static");
 // Server port
 var HTTP_PORT = process.env.PORT || 8000
 
-// Enable static
-app.use(servestatic(path.join(path.resolve(), 'dist')));
+// Enable static in production
+if(process.env.NODE_ENV === 'production'){
+  app.use(servestatic(path.join(path.resolve(), 'dist')));
+}
 
 // Start server
 app.listen(HTTP_PORT, '0.0.0.0', () => {
@@ -18,7 +20,7 @@ app.listen(HTTP_PORT, '0.0.0.0', () => {
 
 // CORS
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://0.0.0.0:8080");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 })
