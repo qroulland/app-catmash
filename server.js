@@ -46,27 +46,29 @@ app.get("/api/cats", (req, res, next) => {
 });
 
 // Vote for a cat
-app.patch("/api/user/:id", (req, res, next) => {
-  var data = {
-    vote: req.body.vote + 1
-  }
-  db.run(
-    `UPDATE cat set 
-      vote = COALESCE(?,vote)
-      WHERE id = ?`,
-    [data.vote, req.params.id],
-    function (err, result) {
-      if (err){
-        res.status(400).json({"error": res.message})
-        return;
-      }
-      res.json({
-        message: "success",
-        data: data,
-        changes: this.changes
-      })
-  });
-})
+app.patch("/api/cat/:id", (req, res, next) => {
+  console.log('put method');
+  // const id = req.body.id;
+  // const data = {
+  //   vote: req.body.vote + 1
+  // }
+  // db.run(
+  //   `UPDATE cat set 
+  //     vote = COALESCE(?,vote)
+  //     WHERE id = ?`,
+  //   [data.vote, this.id],
+  //   function (err, result) {
+  //     if (err){
+  //       res.status(400).json({"error": res.message})
+  //       return;
+  //     }
+  //     res.json({
+  //       message: "success",
+  //       data: data,
+  //       changes: this.changes
+  //     })
+  // });
+});
 
 // Default response for any other request
 app.use(function(req, res){

@@ -37,6 +37,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { voteForMe } from '@/services/api';
 import Picture from '@/components/Picture';
 
 export default {
@@ -69,6 +70,7 @@ export default {
     },
     vote(id) {
       this.$store.dispatch('vote', id);
+      voteForMe(this.cats.find((cat) => cat.id === id));
       this.getTwoRandomCat();
     }
   },
