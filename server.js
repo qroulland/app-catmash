@@ -4,16 +4,17 @@ var app = express()
 var db = require("./database.js")
 
 // Server port
-var HTTP_PORT = 8000
+var HTTP_PORT = process.env.PORT || 8000
 
 // Start server
-app.listen(HTTP_PORT, () => {
-    console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
+app.listen(HTTP_PORT, '0.0.0.0', () => {
+  console.log(process.env.PORT)
+  console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
 });
 
 // CORS
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Origin", "http://0.0.0.0:8080");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 })
