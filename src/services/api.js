@@ -6,8 +6,9 @@ async function getCats() {
   return (await axios.get(`${API_URL}/api/cats`)).data.data;
 }
 
-async function voteForMe(cat) {
-  return await axios.patch(`${API_URL}/api/cat/${cat.id}`, cat);
+function voteForMe(cat) {
+  console.log(cat);
+  return axios.patch(`${API_URL}/api/cat/${cat.id}`, cat);
 }
 
 export {
